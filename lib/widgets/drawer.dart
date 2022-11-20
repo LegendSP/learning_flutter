@@ -35,10 +35,14 @@ class myDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(CupertinoIcons.home),
+              leading: Icon(
+                CupertinoIcons.home,
+              ),
+              iconColor: Colors.white,
               title: Text(
                 "Home",
                 textScaleFactor: 1.2,
+                style: TextStyle(color: Colors.white),
               ),
             ),
             ListTile(

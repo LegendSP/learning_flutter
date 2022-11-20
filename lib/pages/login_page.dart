@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
                 ),
 
                 SizedBox(
-                  height: 0,
+                  height: 15,
                 ),
                 Text(
                   "Welcome $userName to Demo App",
@@ -178,13 +178,14 @@ class _LoginState extends State<Login> {
   }
 
   void nextActivity(BuildContext context) async {
+    Navigator.pushNamed(context, myRoutes.homeRoute);
     if (_keyForm.currentState!.validate()) {
       if (userName == "" || surName == "" || eMail == "" || password == "") {
         //do nothing
         clickBool = false;
         setState(() {});
       } else {
-        await Navigator.pushNamed(context, "/home");
+        await Navigator.pushNamed(context, myRoutes.homeRoute);
         setState(() {
           clickBool = false;
         });
