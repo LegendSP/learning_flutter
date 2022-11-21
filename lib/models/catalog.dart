@@ -2,7 +2,7 @@ class Item {
   final String id;
   final String name;
   final String description;
-  final num price;
+  final String price;
   final String color;
   final String imageUrl;
 
@@ -13,16 +13,19 @@ class Item {
       required this.price,
       required this.color,
       required this.imageUrl});
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      id: map["id"],
+      name: map["name"],
+      description: map["description"],
+      price: map["price"],
+      color: map["color"],
+      imageUrl: map["imageUrl"],
+    );
+  }
 }
 
 class Catalog {
-  static final Items = [
-    Item(
-        id: "sp007",
-        name: "iPhone 12",
-        description: "iOS",
-        price: 999,
-        color: "#ffffff",
-        imageUrl: "images/login_img.png")
-  ];
+  static List<Item> Items = [];
 }

@@ -1,0 +1,30 @@
+{
+    "products" : [
+        {
+            "id" : "1",
+            "name" : "iPhone 12",
+            "description" : "iOS",
+            "price" : "999",
+            "color" : "#33505a",
+            "imageUrl" : "assets/images/login_img.png"
+        },
+
+        {
+            "id" : "2",
+            "name" : "iPhone 12",
+            "description" : "iOS",
+            "price" : "9999",
+            "color" : "#33505a",
+            "imageUrl" : "assets/images/login_img.png"
+        },
+        {
+            "id" : "3",
+            "name" : "iPhone 12",
+            "description" : "iOS",
+            "price" : "99999",
+            "color" : "#33505a",
+            "imageUrl" : "assets/images/login_img.png"
+        }
+    ]
+
+}

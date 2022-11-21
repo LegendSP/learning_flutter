@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utilities/myRoutes.dart';
 
 class myDrawer extends StatelessWidget {
   const myDrawer({super.key});
@@ -34,7 +35,7 @@ class myDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(
                 CupertinoIcons.home,
               ),
@@ -45,17 +46,17 @@ class myDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(CupertinoIcons.home),
               title: Text(
                 "Home",
                 textScaleFactor: 1.2,
               ),
             ),
-            ListTile(
-              leading: Icon(CupertinoIcons.home),
+            const ListTile(
+              leading: Icon(Icons.exit_to_app),
               title: Text(
-                "Home",
+                "Log Out",
                 textScaleFactor: 1.2,
               ),
             ),
