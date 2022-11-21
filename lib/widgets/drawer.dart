@@ -46,10 +46,13 @@ class myDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            const ListTile(
+            ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, myRoutes.secondaryHomeRoute);
+              },
               leading: Icon(CupertinoIcons.home),
               title: Text(
-                "Home",
+                "Secondary Home",
                 textScaleFactor: 1.2,
               ),
             ),
