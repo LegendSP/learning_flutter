@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/models/catalog.dart';
+import 'package:flutter_application_1/pages/catalog_details.dart';
 import 'package:flutter_application_1/widgets/Themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -36,7 +37,7 @@ class _myVelocityState extends State<myVelocity> {
               if (Catalog.Items != null && Catalog.Items.isNotEmpty)
                 CatalogList().expand()
               else
-                Center(child: CircularProgressIndicator())
+                CircularProgressIndicator().centered().expand()
             ],
           ),
         ),
@@ -68,8 +69,18 @@ class CatalogList extends StatelessWidget {
       itemCount: Catalog.Items.length,
       itemBuilder: (context, index) {
         final catalog = Catalog.Items[index];
-        return CatalogItem(
-          catalog: catalog,
+        return InkWell(
+          splashColor: myTheme.creamColor,
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CatalogDetail(catalog: catalog),
+                ));
+          },
+          child: CatalogItem(
+            catalog: catalog,
+          ),
         );
       },
     );
@@ -86,7 +97,7 @@ class CatalogItem extends StatelessWidget {
     return VxBox(
       child: Row(
         children: [
-          myImage(image: catalog.imageUrl),
+          Hero(tag: catalog.id, child: myImage(image: catalog.imageUrl)),
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
