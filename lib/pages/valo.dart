@@ -111,7 +111,10 @@ class CatalogItem extends StatelessWidget {
                 children: [
                   "\$${catalog.price}".text.xl.make(),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text("Buying")));
+                    },
                     child: "BUY".text.make(),
                     style: ButtonStyle(
                         shape: MaterialStateProperty.all(StadiumBorder()),
