@@ -13,22 +13,30 @@ class CatalogDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.cardColor,
       bottomNavigationBar: Container(
-        color: myTheme.creamColor,
+        color: context.theme.canvasColor,
         child: VxArc(
           height: 15,
           edge: VxEdge.TOP,
           child: Container(
-            color: Colors.white,
+            color: context.theme.cardColor,
             child: Hero(
               tag: "heroButtonBar",
               child: ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  "\$${catalog.price}".text.xl.bold.make(),
+                  "\$${catalog.price}"
+                      .text
+                      .xl
+                      .bold
+                      .color(context.theme.buttonColor)
+                      .make(),
                   ElevatedButton(
-                    onPressed: (() {}),
+                    onPressed: (() {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Buying...${catalog.name}")));
+                    }),
                     child: "BUY".text.make(),
                     style: ButtonStyle(
                         shape: MaterialStateProperty.all(StadiumBorder())),
@@ -40,7 +48,8 @@ class CatalogDetail extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: "Catalog Detail Page".text.make(),
+        title:
+            "Catalog Detail Page".text.color(context.theme.buttonColor  ).make(),
       ),
       body: SafeArea(
         child: Column(
@@ -54,16 +63,17 @@ class CatalogDetail extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               child: Container(
                 width: context.screenWidth,
-                color: myTheme.creamColor,
+                color: context.theme.canvasColor,
                 child: Column(
                   children: [
                     catalog.name.text.bold
-                        .color(myTheme.darkBluishColor)
+                        .color(context.theme.buttonColor)
                         .xl4
                         .make(),
                     10.heightBox,
                     catalog.description.text.xl2
                         .textStyle(context.captionStyle)
+                        .color(context.theme.buttonColor)
                         .make()
                   ],
                 ).py64(),

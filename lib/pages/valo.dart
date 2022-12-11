@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/models/catalog.dart';
 import 'package:flutter_application_1/pages/catalog_details.dart';
+import 'package:flutter_application_1/utilities/myRoutes.dart';
 import 'package:flutter_application_1/widgets/Themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -26,7 +27,15 @@ class _myVelocityState extends State<myVelocity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: context.theme.buttonColor,
+        onPressed: () {
+          Navigator.pushNamed(context, myRoutes.cartPage);
+        },
+        child: Icon(Icons.shopping_cart_outlined)
+            .iconColor(context.theme.canvasColor),
+      ).p0(),
+      backgroundColor: context.theme.backgroundColor,
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -68,7 +77,7 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: Catalog.Items.length,
       itemBuilder: (context, index) {
-        final catalog = Catalog.Items[index];
+        final catalog = Catalog.getByPosition(index);
         return InkWell(
           splashColor: myTheme.creamColor,
           onTap: () {
@@ -103,23 +112,27 @@ class CatalogItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              catalog.name.text.lg.make(),
-              catalog.description.text.textStyle(context.captionStyle).make(),
+              catalog.name.text.color(Theme.of(context).buttonColor).lg.make(),
+              catalog.description.text.color(context.theme.buttonColor).make(),
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
                 buttonPadding: EdgeInsets.zero,
                 children: [
-                  "\$${catalog.price}".text.xl.make(),
+                  "\$${catalog.price}"
+                      .text
+                      .xl
+                      .color(context.theme.buttonColor)
+                      .make(),
                   ElevatedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text("Buying")));
                     },
-                    child: "BUY".text.make(),
+                    child: "BUY".text.color(context.theme.canvasColor).make(),
                     style: ButtonStyle(
                         shape: MaterialStateProperty.all(StadiumBorder()),
-                        backgroundColor:
-                            MaterialStateProperty.all(myTheme.darkBluishColor)),
+                        backgroundColor: MaterialStateProperty.all(
+                            context.theme.buttonColor)),
                   )
                 ],
               ).px4()
@@ -127,7 +140,13 @@ class CatalogItem extends StatelessWidget {
           ))
         ],
       ),
-    ).white.roundedLg.square(110).make().py8().expand();
+    )
+        .color(context.theme.cardColor)
+        .roundedLg
+        .square(110)
+        .make()
+        .py8()
+        .expand();
   }
 }
 
@@ -142,7 +161,7 @@ class myImage extends StatelessWidget {
         .box
         .rounded
         .p4
-        .color(myTheme.creamColor)
+        .color(context.theme.canvasColor)
         .make()
         .p12();
   }
@@ -155,8 +174,8 @@ class myHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        "Catalog App".text.xl4.color(myTheme.darkBluishColor).make(),
-        "Trending Products".text.xl2.color(myTheme.darkBluishColor).make(),
+        "Catalog App".text.xl4.color(context.theme.buttonColor).make(),
+        "Trending Products".text.xl2.color(context.theme.buttonColor).make(),
       ],
     );
   }

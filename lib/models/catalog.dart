@@ -28,4 +28,9 @@ class Item {
 
 class Catalog {
   static List<Item> Items = [];
+
+  static Item getById(int id) =>
+      Items.firstWhere((element) => element.id == id, orElse: null);
+
+  static Item getByPosition(int position) => Items[position];
 }
